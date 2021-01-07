@@ -6,6 +6,7 @@ const { v4: uuidv4 } = require('uuid');
 
 // INICIALIZACIONES
 const app = express();
+require('./database');
 
 // SETTINGS
 app.set('port', process.env.PORT || 3000); // Si no existe un puerto definido en la nuve, usa el puerto 3000
@@ -38,6 +39,7 @@ app.use(multer({ storage: storage }).single('image'));
 app.use(require('./routes/index'));
 
 // Static files
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Start the server
 app.listen(app.get('port'), () => {
