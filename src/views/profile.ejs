@@ -13,7 +13,9 @@
             <div class="col-md-4 offset-md-4">
                 <div class="card animate__animated animate__fadeInDownBig">
                     <img src="<%= image.path %>" class="card-img-top">
-                    <div class="card-body">                        <h5 class="card-title"><%= image.title %></h5>
+                    <div class="card-body">
+                        <h5 class="card-title"><%= image.title %></h5>
+                        <p class="card-text"><%= image.description %></p>
                         <p class="card-text"><%= format(image.created_at) %></p>
                         <a href="/image/<%= image.id %>/delete" class="btn btn-danger d-grid gap-2">
                              Delete image

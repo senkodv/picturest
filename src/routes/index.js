@@ -33,6 +33,7 @@ router.get('/image/:id', async (req, res) => {
     const { id } = req.params;
     const image = await Image.findById(id);
     res.render('profile', { image });
+    console.log(image);
 });
 
 router.get('/image/:id/delete', async (req, res) => {
