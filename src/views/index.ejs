@@ -13,13 +13,12 @@
             <% images.forEach(function(image){ %>
                 <div class="col">
                     <div class="card animate__animated animate__fadeIn">
-                        <img src="<%= image.path %>" class="card-img-top">
+                        <a href="/image/<%= image.id %>">
+                            <img src="<%= image.path %>" class="card-img-top">
+                        </a>
                         <div class="card-body">
                             <h5 class="card-title"><%= image.title %></h5>
                             <p class="card-text"><%= format(image.created_at) %></p>
-                            <a href="/image/<%= image.id %>" class="btn btn-primary">
-                                View image
-                            </a>
                         </div>
                     </div>
                 </div>
