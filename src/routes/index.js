@@ -1,6 +1,8 @@
 const { Router } = require('express');
 const router = Router();
+const {unlink} = require('fs-extra');
 
+const path = require('path');
 const Image = require('../models/Image');
 
 router.get('/', async (req, res) => {
@@ -27,12 +29,17 @@ router.post('/upload', async (req, res) => {
     res.redirect('/');
 });
 
-router.get('/image/:id', (req, res) => {
-    res.send('Image uploaded!');
+router.get('/image/:id', async (req, res) => {
+    const { id } = req.params;
+    const image = await Image.findById(id);
+    res.render('profile', { image });
 });
 
-router.get('/image/:id/delete', (req, res) => {
-    res.send('Image Deleted');
+router.get('/image/:id/delete', async (req, res) => {
+    const { id } = req.params;
+    const image = await Image.findByIdAndDelete(id); // Almacenar los datos de la imagen que queremos eliminar
+    await unlink(path.resolve('./src/public' + image.path)); // Eliminar la imagen de dicha path/dirección
+    res.redirect('/');
 });
 
 module.exports = router;
